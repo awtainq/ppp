@@ -3,6 +3,9 @@ import aiohttp
 from aiohttp import ClientTimeout
 import itertools
 import sys
+import time
+ 
+start_time = time.time()
 
 def generate_combinations():
     letters = 'abcdefghijklmnopqrstuvwxyz'
@@ -15,7 +18,7 @@ def generate_combinations():
     
     return result
 
-MAX_REQUESTS_PER_SECOND = 5000
+MAX_REQUESTS_PER_SECOND = 15000
 
 proxy = 'http://brd-customer-hl_d6d9728f-zone-datacenter_proxy1:hzzvgl8lcb64@brd.superproxy.io:22225'
 
@@ -53,3 +56,9 @@ async def main():
         await asyncio.gather(*tasks)
 
 asyncio.run(main())
+end_time = time.time()
+execution_time = end_time - start_time
+ 
+print(f"Время выполнения программы: {execution_time} секунд")
+
+
